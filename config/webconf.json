@@ -1,0 +1,88 @@
+{
+  "status": {
+    "code": 200,
+    "msg": "运营中"
+  },
+  "search": "https://api.btapi.xyz/api",
+  "alert": "防走丢发布页 https://openbt.net 请牢记！",
+  "notice": {
+    "id": 100,
+    "msg": "本站基于DHT协议，信息源于自动爬虫自动索引，我们不存储任何资源和文件，亦不对结果承担任何责任。请自行判断信息的来源、可信性，防止被骗。"
+  },
+  "tags": [
+    {
+      "label": "流浪地球",
+      "type": "native"
+    },
+    {
+      "label": "抖阴短视频",
+      "url": "https://23dy.me/?channel=dy013jg",
+      "type": "url"
+    },
+    {
+      "label": "精东影业AV",
+      "url": "https://jdhot3.me/?_c=jd18jg",
+      "type": "url"
+    },
+    {
+      "label": "寄生虫",
+      "type": "native"
+    },
+    {
+      "label": "花木兰",
+      "type": "native"
+    },
+    {
+      "label": "冰雪奇缘2",
+      "type": "native"
+    },
+    {
+      "label": "成人抖阴",
+      "url": "https://ybdsb.fun/?ch=bobo",
+      "type": "url"
+    },
+    {
+      "label": "蜜桃独家原创",
+      "url": "https://mtdwqr.xyz/?ch=bobo",
+      "type": "url"
+    },
+    {
+      "label": "唐人街探案3",
+      "type": "native"
+    },
+    {
+      "label": "项思醒合集",
+      "url": "https://tsgywm.xyz/?ch=boboo",
+      "type": "url"
+    },
+    {
+      "label": "杨幂迷女干",
+      "url": "https://ljaruv.xyz/?ch=boboo",
+      "type": "url"
+    }
+  ],
+  "ad": {
+    "searchlist": [
+      {
+        "type": "ad",
+        "status": false,
+        "json": {
+          "ad_type": "url",
+          "bg": "//pic.iask.cn/fimg/252683833558.jpg",
+          "bg_mobile": "//pic.iask.cn/fimg/710803833267.jpg",
+          "data": "https://baidu.com"
+        }
+      }
+    ],
+    "detail": {
+      "type": "ad",
+      "status": false,
+      "json": {
+        "ad_type": "url",
+        "bg": "//pic.iask.cn/fimg/252683833558.jpg",
+        "bg_mobile": "//pic.iask.cn/fimg/710803833267.jpg",
+        "data": "https://baidu.com"
+      }
+    }
+  }
+}
