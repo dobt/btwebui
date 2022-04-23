@@ -1,165 +1,139 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" href="/favicon.ico">
-    <title>moster-search</title>
-    <script src="//jsdelivr.000cdn.com/gh/dobt/btwebui/js/debug.js"></script>
-    <script src="//jsdelivr.000cdn.com/gh/dobt/live2d-models/js/live2d/jquery.2136.min.js"></script>
-    <script src="//jsdelivr.000cdn.com/gh/dobt/live2d-models/js/live2d/live2dcubismcore.min.js"></script>
-    <script src="//jsdelivr.000cdn.com/gh/dylanNew/live2d/webgl/Live2D/lib/live2d.min.js"></script>
-    <script src="//jsdelivr.000cdn.com/npm/pixi.js@5.3.6/dist/pixi.min.js"></script>
-    <script src="//jsdelivr.000cdn.com/npm/pixi-live2d-display/dist/index.min.js"></script>
-    <script>window.initLive2d = async function () {
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><title>moster-search</title><script src="//jsdelivr.000cdn.com/gh/dobt/btwebui/js/debug.js"></script><script src="//jsdelivr.000cdn.com/gh/dobt/live2d-models/js/live2d/jquery.2136.min.js"></script><script src="//jsdelivr.000cdn.com/gh/dobt/live2d-models/js/live2d/live2dcubismcore.min.js"></script><script src="//jsdelivr.000cdn.com/gh/dylanNew/live2d/webgl/Live2D/lib/live2d.min.js"></script><script src="//jsdelivr.000cdn.com/npm/pixi.js@5.3.6/dist/pixi.min.js"></script><script src="//jsdelivr.000cdn.com/npm/pixi-live2d-display/dist/index.min.js"></script><script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id: "JfO2xP2rVDmW4mog",ck: "JfO2xP2rVDmW4mog",hashMode:true})</script><script>window.initLive2d = async function () {
 
-        let mycanvas = window.document.getElementById('mycanvas')
-        if (mycanvas === undefined || mycanvas == null) {
-            return
-        }
+            let mycanvas = window.document.getElementById('mycanvas')
+            if (mycanvas === undefined || mycanvas == null) {
+                return
+            }
 
-        let PIXI = window.PIXI
-        let Live2DModel = PIXI.live2d.Live2DModel
-        let MotionPreloadStrategy = PIXI.live2d.MotionPreloadStrategy
-        let config = PIXI.live2d.config
+            let PIXI = window.PIXI
+            let Live2DModel = PIXI.live2d.Live2DModel
+            let MotionPreloadStrategy = PIXI.live2d.MotionPreloadStrategy
+            let config = PIXI.live2d.config
 
-        config.logLevel = config.LOG_LEVEL_WARNING;
+            config.logLevel = config.LOG_LEVEL_WARNING;
 
-        $(mycanvas).hide()
+            $(mycanvas).hide()
 
-        const model = await Live2DModel
-            .from('//jsdelivr.000cdn.com/gh/dobt/live2d-models/models/tianlangxing_3/tianlangxing_3.model3.json'
-                , {
-                    motionPreload: MotionPreloadStrategy.NONE
-                });
-        $(mycanvas).fadeIn(1000)
+            const model = await Live2DModel
+                .from('//jsdelivr.000cdn.com/gh/dobt/live2d-models/models/tianlangxing_3/tianlangxing_3.model3.json'
+                    , {
+                        motionPreload: MotionPreloadStrategy.NONE
+                    });
+            $(mycanvas).fadeIn(1000)
 
-        // model.internalModel.motionManager.on('motionStart', (group, index) => {
-        //     const motion = model.internalModel.motionManager.motionGroups[group]?.[index];
-        //     console.log(motion)
-        // })
+            // model.internalModel.motionManager.on('motionStart', (group, index) => {
+            //     const motion = model.internalModel.motionManager.motionGroups[group]?.[index];
+            //     console.log(motion)
+            // })
 
-        //console.log(model.internalModel.motionManager.definitions)
-        // 不确定是否是多个
-        for (let definition of model.internalModel.motionManager.definitions[""]) {
-            //console.log(definition)
-            await model.motion(definition);
-        }
+            //console.log(model.internalModel.motionManager.definitions)
+            // 不确定是否是多个
+            for (let definition of model.internalModel.motionManager.definitions[""]) {
+                //console.log(definition)
+                await model.motion(definition);
+            }
 
-        // setTimeout(async ()=>{
-        await model.internalModel.motionManager.startMotion('', 10);
-        // },3000)
+            // setTimeout(async ()=>{
+            await model.internalModel.motionManager.startMotion('', 10);
+            // },3000)
 
-        //console.log(model.internalModel)
+            //console.log(model.internalModel)
 
-        mycanvas.addEventListener('click', event => {
-            // console.log(event.clientX, event.clientY)
-            // console.log(model.hitTest(event.clientX, event.clientY))
-            // model.tap(event.clientX, event.clientY)
-            model.internalModel.motionManager.startRandomMotion('', 3)
-            // if(!model.internalModel.motionManager.playing){
+            mycanvas.addEventListener('click', event => {
+                // console.log(event.clientX, event.clientY)
+                // console.log(model.hitTest(event.clientX, event.clientY))
+                // model.tap(event.clientX, event.clientY)
+                model.internalModel.motionManager.startRandomMotion('', 3)
+                // if(!model.internalModel.motionManager.playing){
+                //
+                //     model.internalModel.motionManager.startRandomMotion('')
+                // }
+            });
+
+            window.startRandomMotion = function () {
+                model.internalModel.motionManager.startRandomMotion('', 3)
+            }
+
+            // 获取容器的宽
+            let containerWidth = $('#container_canvas').width()
+            //console.log('画布宽度：' + $('#container_canvas').width())
+            // 宽高比按照源素材设置
+            let rt = model.width / model.height
+            // 1.16
+            //console.log('源素材宽高比：' + rt)
+            let scaledW = containerWidth * 0.4
+            if (scaledW >= 246) {
+                //最大的大小
+                scaledW = 246
+            }
+            let scaledH = scaledW / rt
+
+            //console.error(scaledW, scaledH)
+
+            // 变换
+
+            //model.rotation = Math.PI;
+            //model.skew.x = Math.PI;
+
+            // 缩放后 model.height/width 的值也会缩小
+            model.anchor.set(0.5, 0.5);
+            // 变换
+
+            //console.log('画布设置宽高 ', scaledW + ' x ' + scaledH)
+            // 计算应该缩放多少
+            let scaleW = scaledW / model.width
+            let scaleH = scaledH / model.height
+            //console.log('缩放比：W ' + scaleW + '  H ' + scaleH)
+
+            model.scale.set(scaleW, scaleW);
+
+            model.x = model.width * 0.5;
+            model.y = (model.height * 0.5).toFixed(2);
+
+            //console.log(model.x, model.y)
+
+            // 282  242
+
+            //console.error('缩放素材：' + model.width + ' x ' + model.height)
+
+            const app = new PIXI.Application({
+                view: mycanvas,
+                width: model.width,
+                height: model.height,
+                antialias: true,
+                autoStart: true,
+                autoResize: true,
+                resolution: 1,
+                backgroundColor: 0xfafafa
+            });
+            app.stage.addChild(model);
+
+
+            // 交互
+            // model.on('hit', hitAreas => {
+            //     console.error(hitAreas)
+            //     if (hitAreas.includes('body')) {
+            //         model.motion('mission_complete');
+            //     }
+            // });
+
+            window.live2d = model
+
+
+            // this.internalModel.motionManager.on('motionStart', (group: string, index: number) => {
+            //     this.currentMotionStartTime = this.elapsedTime;
+            //     this.currentMotionDuration = 0;
             //
-            //     model.internalModel.motionManager.startRandomMotion('')
-            // }
-        });
-
-        window.startRandomMotion = function () {
-            model.internalModel.motionManager.startRandomMotion('', 3)
-        }
-
-        // 获取容器的宽
-        let containerWidth = $('#container_canvas').width()
-        //console.log('画布宽度：' + $('#container_canvas').width())
-        // 宽高比按照源素材设置
-        let rt = model.width / model.height
-        // 1.16
-        //console.log('源素材宽高比：' + rt)
-        let scaledW = containerWidth * 0.4
-        if (scaledW >= 246) {
-            //最大的大小
-            scaledW = 246
-        }
-        let scaledH = scaledW / rt
-
-        //console.error(scaledW, scaledH)
-
-        // 变换
-
-        //model.rotation = Math.PI;
-        //model.skew.x = Math.PI;
-
-        // 缩放后 model.height/width 的值也会缩小
-        model.anchor.set(0.5, 0.5);
-        // 变换
-
-        //console.log('画布设置宽高 ', scaledW + ' x ' + scaledH)
-        // 计算应该缩放多少
-        let scaleW = scaledW / model.width
-        let scaleH = scaledH / model.height
-        //console.log('缩放比：W ' + scaleW + '  H ' + scaleH)
-
-        model.scale.set(scaleW, scaleW);
-
-        model.x = model.width * 0.5;
-        model.y = (model.height * 0.5).toFixed(2);
-
-        //console.log(model.x, model.y)
-
-        // 282  242
-
-        //console.error('缩放素材：' + model.width + ' x ' + model.height)
-
-        const app = new PIXI.Application({
-            view: mycanvas,
-            width: model.width,
-            height: model.height,
-            antialias: true,
-            autoStart: true,
-            autoResize: true,
-            resolution: 1,
-            backgroundColor: 0xfafafa
-        });
-        app.stage.addChild(model);
+            //     const motion = this.internalModel.motionManager.motionGroups[group]?.[index];
+            //
+            //     if (motion) {
+            //         if ('_loopDurationSeconds' in motion) {
+            //             this.currentMotionDuration = motion._loopDurationSeconds * 1000;
+            //         } else if ('getDurationMSec' in motion) {
+            //             this.currentMotionDuration = motion.getDurationMSec();
+            //         }
+            //     }
+            // });
 
 
-        // 交互
-        // model.on('hit', hitAreas => {
-        //     console.error(hitAreas)
-        //     if (hitAreas.includes('body')) {
-        //         model.motion('mission_complete');
-        //     }
-        // });
-
-        window.live2d = model
-
-
-        // this.internalModel.motionManager.on('motionStart', (group: string, index: number) => {
-        //     this.currentMotionStartTime = this.elapsedTime;
-        //     this.currentMotionDuration = 0;
-        //
-        //     const motion = this.internalModel.motionManager.motionGroups[group]?.[index];
-        //
-        //     if (motion) {
-        //         if ('_loopDurationSeconds' in motion) {
-        //             this.currentMotionDuration = motion._loopDurationSeconds * 1000;
-        //         } else if ('getDurationMSec' in motion) {
-        //             this.currentMotionDuration = motion.getDurationMSec();
-        //         }
-        //     }
-        // });
-
-
-    }</script>
-    <link href="//jsdelivr.000cdn.com/gh/dobt/btwebui/css/app.c2b270d2.css" rel="preload" as="style">
-    <link href="//jsdelivr.000cdn.com/gh/dobt/btwebui/js/app.07d8f61a.js" rel="preload" as="script">
-    <link href="//jsdelivr.000cdn.com/gh/dobt/btwebui/css/app.c2b270d2.css" rel="stylesheet">
-</head>
-<body>
-<div id="app">
-    <router-view></router-view>
-</div>
-<script src="//jsdelivr.000cdn.com/gh/dobt/btwebui/js/app.07d8f61a.js"></script>
-</body>
-<script></script>
-</html>
+        }</script><link href="//jsdelivr.000cdn.com/gh/dobt/btwebui/css/app.c2b270d2.css" rel="preload" as="style"><link href="//jsdelivr.000cdn.com/gh/dobt/btwebui/js/app.94aeb04a.js" rel="preload" as="script"><link href="//jsdelivr.000cdn.com/gh/dobt/btwebui/css/app.c2b270d2.css" rel="stylesheet"></head><body><div id="app"><router-view></router-view></div><script src="//jsdelivr.000cdn.com/gh/dobt/btwebui/js/app.94aeb04a.js"></script></body><script></script></html>
